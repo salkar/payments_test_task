@@ -35,3 +35,7 @@ group :development, :test do
   gem "rubocop-performance"
   gem "rubocop-rails"
 end
+
+group :development do
+  gem "annotate"
+end
