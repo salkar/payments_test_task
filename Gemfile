@@ -29,6 +29,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "dotenv-rails"
   gem "factory_bot_rails"
+  gem "faker"
   gem "rspec-rails", "~> 4.0.2"
   gem "rubocop", "~> 1.9", require: false
   gem "rubocop-performance"
