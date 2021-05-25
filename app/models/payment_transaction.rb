@@ -32,4 +32,6 @@ class PaymentTransaction < ApplicationRecord
   validates :amount, presence: true
   validates :balance, presence: true
   validates :name, presence: true
+
+  scope :ordered, -> { order(created_at: :asc) }
 end

@@ -13,6 +13,7 @@ RSpec.describe PaymentTransactions::Create do
 
   it do
     expect(subject).to be_truthy
+    expect(service.success).to be_truthy
   end
 
   context "balance" do
@@ -26,6 +27,7 @@ RSpec.describe PaymentTransactions::Create do
     it "should be created correctly" do
       expect { subject }.to change { PaymentTransaction.count }.from(0).to(1)
       payment_transaction = PaymentTransaction.last
+      expect(service.payment_transaction).to eq(payment_transaction)
       expect(payment_transaction.amount).to eq(amount)
       expect(payment_transaction.balance).to eq(amount + balance)
       expect(payment_transaction.name).to eq(name)
@@ -89,6 +91,7 @@ RSpec.describe PaymentTransactions::Create do
         .to eq(amount: [{ error: :not_enough_balance }])
       expect(user.reload.balance).to eq(balance)
       expect(PaymentTransaction.count).to eq(0)
+      expect(service.success).to be_falsey
     end
   end
 

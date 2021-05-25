@@ -2,7 +2,7 @@
 
 class PaymentTransactions::Create < ApplicationService
   attr_accessor :params, :user
-  attr_reader :amount, :payment_transaction
+  attr_reader :amount, :payment_transaction, :success
 
   validates :user, presence: true
   validates :amount, numericality: { other_than: 0 }
@@ -23,7 +23,7 @@ class PaymentTransactions::Create < ApplicationService
       )
       payment_transaction.save!
     end
-    true
+    @success = true
   rescue ActiveRecord::RecordInvalid, ActiveRecord::StatementInvalid
     false
   end
